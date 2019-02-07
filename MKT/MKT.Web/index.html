@@ -1,0 +1,27 @@
+<html>
+         <head>
+                  <script src="js/jquery-1.10.2.js"></script>
+         </head>
+         <body>
+
+         </body>
+</html>
+<script>
+$(function(){
+         var urlSave = 'http://localhost:53913/MKT/api/Gerentes/InsertGerente';
+         
+         var persona = new Object();
+         persona.CodigoNomina = "Mi codigo de nomina";
+         persona.Entidad = "Mi entidad";
+         persona.FechaInicio = "2019-01-01";
+         persona.FechaTermino = "2019-01-01";
+         persona.IdGerente = 0;
+         persona.IsActive = true;
+         persona.Nombre = "Mi Nombre";
+        $.post(urlSave, persona)
+         .done(function(msg){ alert(msg)}) 
+         .fail(function(xhr, status, error){ alert("Error" + error)});
+
+
+});
+</script>

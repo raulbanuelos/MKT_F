@@ -30,20 +30,42 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    var request = new XMLHttpRequest();
-    request.open('GET', 'http://localhost:53913/MKT/api/values/GetAllValues');
-    request.onload = function () {
+<script>
+    //var request = new XMLHttpRequest();
+    //request.open('GET', 'http://localhost:53913/MKT/api/values/GetAllValues');
+    //request.onload = function () {
 
-        var data = JSON.parse(this.response);
-        if (request.status >= 200 && request.status < 400) {
-            $.each(data, function (index, gerente) {
-                console.log(index + ": " + gerente.Nombre)
-            });
-        } else {
-            console.log(request.responseText);
-        }
-    }
+    //    var data = JSON.parse(this.response);
+    //    if (request.status >= 200 && request.status < 400) {
+    //        $.each(data, function (index, gerente) {
+    //            console.log(index + ": " + gerente.Nombre)
+    //        });
+    //    } else {
+    //        console.log(request.responseText);
+    //    }
+    //}
 
-    request.send();
+    $(function () {
+        var urlSave = 'http://localhost:53913/MKT/api/Gerentes/InsertGerente/';
+        var texto = '{"IdGerente": 0,"CodigoNomina": "el código", "Nombre": "el nombre", "Entidad": "La entidad", "IsActive": true, "FechaInicio": "2019-02-07T16:57:16.870Z", "FechaTermino": "2019-02-07T16:57:16.870Z"}';
+
+        var obj = JSON.parse(texto);
+       
+        debugger;
+        $.ajax({
+            type: "POST",
+            url: urlSave,
+            dataType: "json",
+            data: JSON.stringify({ dO_Gerente: obj }),
+            success: function (mensaje) {
+                alert(mensaje.responseText);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                debugger;
+            }
+
+        });
+    });
+    
+    
 </script>
