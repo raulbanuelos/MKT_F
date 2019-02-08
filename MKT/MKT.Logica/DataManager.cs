@@ -11,6 +11,7 @@ namespace MKT.Logica
 {
     public static class DataManager
     {
+        #region Gerentes
         public static List<DO_Gerente> GetAllGerentes()
         {
             List<DO_Gerente> ListadoGerentes = new List<DO_Gerente>();
@@ -27,14 +28,14 @@ namespace MKT.Logica
 
                     Type tipo = itemGerente.GetType();
 
-                    gerente.IdGerente = (int)tipo.GetProperty("Id").GetValue(itemGerente,null);
+                    gerente.IdGerente = (int)tipo.GetProperty("Id").GetValue(itemGerente, null);
                     gerente.CodigoNomina = (string)tipo.GetProperty("CodigoNomina").GetValue(itemGerente, null);
                     gerente.Nombre = (string)tipo.GetProperty("Nombre").GetValue(itemGerente, null);
                     gerente.Entidad = (string)tipo.GetProperty("Entidad").GetValue(itemGerente, null);
                     gerente.IsActive = (bool)tipo.GetProperty("Activo").GetValue(itemGerente, null);
                     gerente.FechaInicio = (DateTime)tipo.GetProperty("FechaInicio").GetValue(itemGerente, null);
                     gerente.FechaTermino = (DateTime)tipo.GetProperty("FechaTermino").GetValue(itemGerente, null);
-                    
+
                     ListadoGerentes.Add(gerente);
                 }
             }
@@ -61,6 +62,26 @@ namespace MKT.Logica
             SO_Gerente sO_Gerente = new SO_Gerente();
 
             return sO_Gerente.Delete(idGerente);
+        } 
+
+        public static bool ExistGerente(string codigoNomina)
+        {
+            bool respuesta = true;
+
+            SO_Gerente sO_Gerente = new SO_Gerente();
+
+            IList informacionBD = sO_Gerente.GetGerente(codigoNomina);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Count == 0)
+                {
+                    respuesta = false;
+                }
+            }
+
+            return respuesta;
         }
+        #endregion
     }
 }

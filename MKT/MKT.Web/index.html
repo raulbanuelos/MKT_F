@@ -3,25 +3,49 @@
                   <script src="js/jquery-1.10.2.js"></script>
          </head>
          <body>
-
+                  
          </body>
 </html>
 <script>
 $(function(){
-         var urlSave = 'http://localhost:53913/MKT/api/Gerentes/InsertGerente';
+         /*var urlSave = 'http://localhost:53913/MKT/api/Gerentes/InsertGerente';
          
          var persona = new Object();
-         persona.CodigoNomina = "Mi codigo de nomina";
-         persona.Entidad = "Mi entidad";
-         persona.FechaInicio = "2019-01-01";
-         persona.FechaTermino = "2019-01-01";
+         persona.CodigoNomina = "A1441";
+         persona.Entidad = "Aguascalientes";
+         persona.FechaInicio = "2018-03-20";
+         persona.FechaTermino = "2019-02-01";
          persona.IdGerente = 0;
          persona.IsActive = true;
-         persona.Nombre = "Mi Nombre";
+         persona.Nombre = "EDGAR RAÚL BAÑUELOS DÍAZ";
         $.post(urlSave, persona)
          .done(function(msg){ alert(msg)}) 
-         .fail(function(xhr, status, error){ alert("Error" + error)});
+         .fail(function(respond){ alert(respond.responseJSON.Message); });
+         */
 
+         var urlSave = 'http://localhost:53913/MKT/api/Login';
+         var loginRequest = new Object();
+         loginRequest.Username = "admin";
+         loginRequest.Password = "admin";
+         $.post(urlSave, loginRequest)
+         .done(function(msg){ alert(msg)}) 
+         .fail(function(respond){ alert(respond.responseJSON.Message); });
+
+
+        /*$.ajax({
+                  type: "POST", //GET, POST, PUT
+                  url: urlSave,  //the url to call
+                  data: loginRequest,     //Data sent to server
+                  contentType: contentType,           
+                  beforeSend: function (xhr) {   //Include the bearer token in header
+                           xhr.setRequestHeader("Authorization", 'Bearer '+ jwt);
+                  }
+                  }).done(function (response) {
+                           //Response ok. process reuslt
+                           alert("Welcome")
+                  }).fail(function (err)  {
+                           //Error during request
+         });*/
 
 });
 </script>

@@ -8,9 +8,11 @@ using System.Web.Http;
 
 namespace MKT.WebAPIRest.Controllers
 {
+
     /// <summary>
     /// 
     /// </summary>
+    [Authorize]
     public class ValuesController : ApiController
     {
         private Gerente[] lista => new Gerente[] { new Gerente { Id = 1, Nombre = "Raúl"},
