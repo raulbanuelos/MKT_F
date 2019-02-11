@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MKT.Logica", "MKT.Logica\MK
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MKT.DataAccess", "MKT.DataAccess\MKT.DataAccess.csproj", "{4266278F-30EE-423D-95D6-4679DA226064}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MKT.Web", "MKT.Web\MKT.Web.csproj", "{539B59E1-A6DB-4439-A7DA-FF40BC27CA24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4266278F-30EE-423D-95D6-4679DA226064}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4266278F-30EE-423D-95D6-4679DA226064}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4266278F-30EE-423D-95D6-4679DA226064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{539B59E1-A6DB-4439-A7DA-FF40BC27CA24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{539B59E1-A6DB-4439-A7DA-FF40BC27CA24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{539B59E1-A6DB-4439-A7DA-FF40BC27CA24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{539B59E1-A6DB-4439-A7DA-FF40BC27CA24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

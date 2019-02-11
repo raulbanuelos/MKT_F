@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DataManager.cs" />
     <Compile Include="Models\DO_Gerente.cs" />
+    <Compile Include="Models\DO_Usuario.cs" />
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
