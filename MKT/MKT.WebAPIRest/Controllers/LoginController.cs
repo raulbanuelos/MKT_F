@@ -15,6 +15,11 @@ namespace MKT.WebAPIRest.Controllers
     /// </summary>
     public class LoginController : ApiController
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         [HttpPost]
         public IHttpActionResult Autenticate([FromBody]LoginRequest login)
         {
