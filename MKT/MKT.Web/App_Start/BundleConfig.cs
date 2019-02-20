@@ -25,7 +25,19 @@ namespace MKT.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/css/bootstrap-theme.css",
+                      "~/css/elegant-icons-style.css",
+                      "~/css/font-awensome.css",
+                      "~/css/jquery-jvectormap-1.2.2",
+                      "~/css/jquery-ui-1.10.4.min",
+                      "~/css/line-icons.css",
+                      "~/css/owl.carousel.css",
+                      "~/css/style-responsive.css",
+                      "~/css/style.css",
+                      "~/css/widgets.css",
+                      "~/xchart.min.css"
+                      ));
         }
     }
 }

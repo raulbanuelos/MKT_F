@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MKT.Logica.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,16 +15,15 @@ namespace MKT.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Ingresar(string usuario,string contrasena)
+        public ActionResult Ingresar([Bind(Include = "Usuario,Contrasena")] DO_Usuario persona)
         {
-
-            if (contrasena == "admin")
+            if (persona.Contrasena == "admin")
             {
                 return RedirectToAction("Index", "Home");
             }
             else
             {
-                return View("Index");
+                return View("LoginMTK");
             }
         }
     }
