@@ -82,6 +82,33 @@ namespace MKT.Logica
 
             return respuesta;
         }
+
+        public static DO_Gerente GetGerente(int idGerente)
+        {
+            DO_Gerente gerente = new DO_Gerente();
+
+            SO_Gerente sO_Gerente = new SO_Gerente();
+
+            IList informacionBD = sO_Gerente.GetGerente(idGerente);
+
+            if (informacionBD != null)
+            {
+                foreach (var itemGerente in informacionBD)
+                {
+                    gerente = new DO_Gerente();
+                    Type tipo = itemGerente.GetType();
+
+                    gerente.IdGerente = (int)tipo.GetProperty("Id").GetValue(itemGerente, null);
+                    gerente.CodigoNomina = (string)tipo.GetProperty("CodigoNomina").GetValue(itemGerente, null);
+                    gerente.Nombre = (string)tipo.GetProperty("Nombre").GetValue(itemGerente, null);
+                    gerente.Entidad = (string)tipo.GetProperty("Entidad").GetValue(itemGerente, null);
+                    gerente.IsActive = (bool)tipo.GetProperty("Activo").GetValue(itemGerente, null);
+                    gerente.FechaInicio = (DateTime)tipo.GetProperty("FechaInicio").GetValue(itemGerente, null);
+                    gerente.FechaTermino = (DateTime)tipo.GetProperty("FechaTermino").GetValue(itemGerente, null);
+                }
+            }
+            return gerente;
+        }
         #endregion
     }
 }

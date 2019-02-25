@@ -49,13 +49,11 @@
     <div class="container">
         
         @{
-            using (Html.BeginForm("Ingresar", "LogIn", Model, FormMethod.Post))
+            using (Html.BeginForm("Ingresar", "LogIn", Model, FormMethod.Post, new { @class = "login-form" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
 
-
-                <form class="login-form" role="form" action="~/Views/Login/LoginMTK.cshtml">
                     <div class="login-wrap">
                         <p class="login-img"><i class="icon_lock_alt"></i></p>
                         <div class="input-group">
@@ -74,7 +72,7 @@
                         </label>
                         <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
                     </div>
-                </form>
+                
 
             }
         }

@@ -36,6 +36,25 @@ namespace MKT.DataAccess.ServiceObjects
             }
         }
 
+        public IList GetGerente(int idGerente)
+        {
+            try
+            {
+                using (var Conexion = new EntitiesMKT())
+                {
+                    var lista = (from a in Conexion.Gerente
+                                 where a.Id == idGerente
+                                 select a).ToList();
+
+                    return lista;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public int Insert(string codigoNomina, string nombre, string entidad, bool activo, DateTime fechaInicio, DateTime fechaTermino)
         {
             try
@@ -58,7 +77,7 @@ namespace MKT.DataAccess.ServiceObjects
                     return gerente.Id;
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception er)
             {
                 return 0;
             }

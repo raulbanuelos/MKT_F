@@ -1,8 +1,12 @@
 var Script = function () {
 
-    $.validator.setDefaults({
-        submitHandler: function() { alert("submitted!"); }
-    });
+    //Comentamos este código para poder hacer submit y llevarlo al controller, de lo contrario si se deshabilita el código en lugar de ir a controller llega a esta parte del codigo.
+    //$.validator.setDefaults({
+    //    submitHandler: function ()
+    //    {
+    //        alert("submitted!");
+    //    }
+    //});
 
     $().ready(function() {
         // validate the comment form when it is submitted
@@ -11,61 +15,37 @@ var Script = function () {
         // validate signup form on keyup and submit
         $("#register_form").validate({
             rules: {
-                fullname: {
+                CodigoNomina: {
                     required: true,
                     minlength: 6
                 },
-                address: {
+                Nombre: {
                     required: true,
-                    minlength: 10
+                    minlength: 6
                 },
-                username: {
-                    required: true,
-                    minlength: 5
+                Entidad: {
+                    required: true
                 },
-                password: {
-                    required: true,
-                    minlength: 5
-                },
-                confirm_password: {
-                    required: true,
-                    minlength: 5,
-                    equalTo: "#password"
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                topic: {
-                    required: "#newsletter:checked",
-                    minlength: 2
-                },
-                agree: "required"
+                FechaInicio: {
+                    required: true
+                }
             },
-            messages: {                
-                fullname: {
-                    required: "Please enter a Full Name.",
-                    minlength: "Your Full Name must consist of at least 6 characters long."
+            messages: { 
+                CodigoNomina: {
+                    required: "Por favor ingresa el c\u00F3digo de nomina.",
+                    minlength: "El c\u00F3digo de nomina debe ser igual a 6 d\u00EDgitos."
                 },
-                address: {
-                    required: "Please enter a Address.",
-                    minlength: "Your Address must consist of at least 10 characters long."
+                Nombre: {
+                    required: "Por favor ingresa el nombre completo",
+                    minlength: "El nombre completo no debe ser menor a 6 d\u00EDgitos."
                 },
-                username: {
-                    required: "Please enter a Username.",
-                    minlength: "Your username must consist of at least 5 characters long."
+                Entidad: {
+                    required: "Por favor ingrese la entidad."
                 },
-                password: {
-                    required: "Please provide a password.",
-                    minlength: "Your password must be at least 5 characters long."
-                },
-                confirm_password: {
-                    required: "Please provide a password.",
-                    minlength: "Your password must be at least 5 characters long.",
-                    equalTo: "Please enter the same password as above."
-                },
-                email: "Please enter a valid email address.",
-                agree: "Please accept our terms & condition."
+
+                FechaInicio: {
+                    required: "POr favor ingresa la fecha de inicio"
+                }
             }
         });
 

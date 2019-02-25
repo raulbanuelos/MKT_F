@@ -21,23 +21,27 @@ namespace MKT.Web
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/js/bootstrap.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/JSTheme").Include(
+                "~/js/jquery.scrollTo.min.js",
+                "~/js/jquery.nicescroll.js",
+                "~/js/jquery.validate.min.js",
+                "~/js/form-validation-script.js",
+                "~/js/scripts.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/css/bootstrap-theme.css",
                       "~/css/elegant-icons-style.css",
-                      "~/css/font-awensome.css",
-                      "~/css/jquery-jvectormap-1.2.2",
-                      "~/css/jquery-ui-1.10.4.min",
-                      "~/css/line-icons.css",
-                      "~/css/owl.carousel.css",
-                      "~/css/style-responsive.css",
+                      "~/css/font-awesome.min.css",
                       "~/css/style.css",
-                      "~/css/widgets.css",
-                      "~/xchart.min.css"
+                      "~/css/style-responsive.css"
                       ));
+
+
         }
     }
 }
