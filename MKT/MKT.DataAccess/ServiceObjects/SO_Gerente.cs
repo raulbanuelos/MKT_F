@@ -55,7 +55,7 @@ namespace MKT.DataAccess.ServiceObjects
             }
         }
 
-        public int Insert(string codigoNomina, string nombre, string entidad, bool activo, DateTime fechaInicio, DateTime fechaTermino)
+        public int Insert(string codigoNomina, string nombre, string entidad, bool activo, DateTime fechaInicio, DateTime fechaTermino, string cargo)
         {
             try
             {
@@ -65,6 +65,7 @@ namespace MKT.DataAccess.ServiceObjects
                     
                     gerente.CodigoNomina = codigoNomina;
                     gerente.Nombre = nombre;
+                    gerente.Cargo = cargo;
                     gerente.Entidad = entidad;
                     gerente.Activo = activo;
                     gerente.FechaInicio = fechaInicio;
@@ -77,13 +78,13 @@ namespace MKT.DataAccess.ServiceObjects
                     return gerente.Id;
                 }
             }
-            catch (System.Exception er)
+            catch (System.Exception)
             {
                 return 0;
             }
         }
 
-        public int Update(int id, string codigoNomina, string nombre, string entidad, bool activo, DateTime fechaInicio, DateTime fechaTermino)
+        public int Update(int id, string codigoNomina, string nombre, string entidad, bool activo, DateTime fechaInicio, DateTime fechaTermino, string cargo)
         {
             try
             {
@@ -93,6 +94,7 @@ namespace MKT.DataAccess.ServiceObjects
 
                     gerente.CodigoNomina = codigoNomina;
                     gerente.Nombre = nombre;
+                    gerente.Cargo = cargo;
                     gerente.Entidad = entidad;
                     gerente.Activo = activo;
                     gerente.FechaInicio = fechaInicio;

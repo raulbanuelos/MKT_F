@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MKT.DataAccess.ServiceObjects.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MKT.DataAccess.ServiceObjects.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Gerente">
           <Key>
             <PropertyRef Name="Id" />
@@ -12,6 +12,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CodigoNomina" Type="varchar" MaxLength="50" />
           <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Cargo" Type="varchar" MaxLength="100" />
           <Property Name="Entidad" Type="varchar" MaxLength="200" />
           <Property Name="Activo" Type="bit" />
           <Property Name="FechaInicio" Type="datetime" />
@@ -20,11 +21,13 @@
         <EntityContainer Name="MKTDataAccessServiceObjectsStoreContainer">
           <EntitySet Name="Gerente" EntityType="Self.Gerente" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MKT.DataAccess.ServiceObjects" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EntitiesMKT" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Gerente" EntityType="MKT.DataAccess.ServiceObjects.Gerente" />
+        </EntityContainer>
         <EntityType Name="Gerente">
           <Key>
             <PropertyRef Name="Id" />
@@ -32,14 +35,12 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CodigoNomina" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Cargo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Entidad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
           <Property Name="FechaInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaTermino" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityContainer Name="EntitiesMKT" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Gerente" EntityType="Self.Gerente" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -49,13 +50,14 @@
           <EntitySetMapping Name="Gerente">
             <EntityTypeMapping TypeName="MKT.DataAccess.ServiceObjects.Gerente">
               <MappingFragment StoreEntitySet="Gerente">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CodigoNomina" ColumnName="CodigoNomina" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Entidad" ColumnName="Entidad" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
                 <ScalarProperty Name="FechaTermino" ColumnName="FechaTermino" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Entidad" ColumnName="Entidad" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CodigoNomina" ColumnName="CodigoNomina" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

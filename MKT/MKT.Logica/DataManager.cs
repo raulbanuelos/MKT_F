@@ -35,6 +35,7 @@ namespace MKT.Logica
                     gerente.IsActive = (bool)tipo.GetProperty("Activo").GetValue(itemGerente, null);
                     gerente.FechaInicio = (DateTime)tipo.GetProperty("FechaInicio").GetValue(itemGerente, null);
                     gerente.FechaTermino = (DateTime)tipo.GetProperty("FechaTermino").GetValue(itemGerente, null);
+                    gerente.Cargo = (string)tipo.GetProperty("Cargo").GetValue(itemGerente, null);
 
                     ListadoGerentes.Add(gerente);
                 }
@@ -47,14 +48,14 @@ namespace MKT.Logica
         {
             SO_Gerente sO_Gerente = new SO_Gerente();
 
-            return sO_Gerente.Insert(dO_Gerente.CodigoNomina, dO_Gerente.Nombre, dO_Gerente.Entidad, dO_Gerente.IsActive, dO_Gerente.FechaInicio, dO_Gerente.FechaTermino);
+            return sO_Gerente.Insert(dO_Gerente.CodigoNomina, dO_Gerente.Nombre, dO_Gerente.Entidad, dO_Gerente.IsActive, dO_Gerente.FechaInicio, dO_Gerente.FechaTermino,dO_Gerente.Cargo);
         }
 
         public static int UpdateGerente(DO_Gerente dO_Gerente)
         {
             SO_Gerente sO_Gerente = new SO_Gerente();
 
-            return sO_Gerente.Update(dO_Gerente.IdGerente, dO_Gerente.CodigoNomina, dO_Gerente.Nombre, dO_Gerente.Entidad, dO_Gerente.IsActive, dO_Gerente.FechaInicio, dO_Gerente.FechaTermino);
+            return sO_Gerente.Update(dO_Gerente.IdGerente, dO_Gerente.CodigoNomina, dO_Gerente.Nombre, dO_Gerente.Entidad, dO_Gerente.IsActive, dO_Gerente.FechaInicio, dO_Gerente.FechaTermino, dO_Gerente.Cargo);
         }
 
         public static int DeleteGerente(int idGerente)
@@ -105,6 +106,7 @@ namespace MKT.Logica
                     gerente.IsActive = (bool)tipo.GetProperty("Activo").GetValue(itemGerente, null);
                     gerente.FechaInicio = (DateTime)tipo.GetProperty("FechaInicio").GetValue(itemGerente, null);
                     gerente.FechaTermino = (DateTime)tipo.GetProperty("FechaTermino").GetValue(itemGerente, null);
+                    gerente.Cargo = (string)tipo.GetProperty("Cargo").GetValue(itemGerente, null);
                 }
             }
             return gerente;

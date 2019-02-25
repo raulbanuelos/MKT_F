@@ -17,6 +17,7 @@ namespace MKT.DataAccess.ServiceObjects
         public int Id { get; set; }
         public string CodigoNomina { get; set; }
         public string Nombre { get; set; }
+        public string Cargo { get; set; }
         public string Entidad { get; set; }
         public Nullable<bool> Activo { get; set; }
         public Nullable<System.DateTime> FechaInicio { get; set; }

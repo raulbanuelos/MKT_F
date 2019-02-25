@@ -23,6 +23,9 @@
                         @Html.DisplayNameFor(model => model.Entidad)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.Cargo)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.IsActive)
                     </th>
                     <th>
@@ -36,33 +39,36 @@
 
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CodigoNomina)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Entidad)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsActive)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaInicio)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaTermino)
-                        </td>
-                        <td>
-                            <div>
-                                <a class="btn btn-primary" href="@Url.Action("AltaUsuario","Empleado")"><i class="icon_plus_alt2"></i></a>
-                                <a class="btn btn-success" href="@Url.Action("EditarEmpleado", "Empleado", new { idGerente = item.IdGerente})"><i class="icon_check_alt2"></i></a>
-                                <a class="btn btn-danger" href="@Url.Action("ViewDelete", "Empleado", new { idGerente = item.IdGerente})"><i class="icon_close_alt2"></i></a>
-                            </div>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CodigoNomina)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Entidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cargo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaInicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaTermino)
+                    </td>
+                    <td>
+                        <div>
+                            <a class="btn btn-primary" href="@Url.Action("AltaUsuario","Empleado")"><i class="icon_plus_alt2"></i></a>
+                            <a class="btn btn-success" href="@Url.Action("EditarEmpleado", "Empleado", new { idGerente = item.IdGerente})"><i class="icon_check_alt2"></i></a>
+                            <a class="btn btn-danger" href="@Url.Action("ViewDelete", "Empleado", new { idGerente = item.IdGerente})"><i class="icon_close_alt2"></i></a>
+                        </div>
+                    </td>
+                </tr>
                  }
 
             </table>

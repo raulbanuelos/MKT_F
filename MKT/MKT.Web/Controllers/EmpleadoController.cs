@@ -17,7 +17,7 @@ namespace MKT.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveEmpleado([Bind(Include = "CodigoNomina,Nombre,Entidad,IsActive,FechaInicio,FechaTermino")] DO_Gerente gerente)
+        public ActionResult SaveEmpleado([Bind(Include = "CodigoNomina,Nombre,Entidad,IsActive,FechaInicio,FechaTermino,Cargo")] DO_Gerente gerente)
         {
             if (DataManager.InsertGerente(gerente) > 0)
             {
@@ -40,7 +40,7 @@ namespace MKT.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveChangeEmpleado([Bind(Include = "IdGerente,CodigoNomina,Nombre,Entidad,IsActive,FechaInicio,FechaTermino")] DO_Gerente gerente)
+        public ActionResult SaveChangeEmpleado([Bind(Include = "IdGerente,CodigoNomina,Nombre,Entidad,IsActive,FechaInicio,FechaTermino,Cargo")] DO_Gerente gerente)
         {
             if (DataManager.UpdateGerente(gerente) > 0)
             {

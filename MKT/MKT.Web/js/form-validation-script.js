@@ -28,6 +28,9 @@ var Script = function () {
                 },
                 FechaInicio: {
                     required: true
+                },
+                Cargo: {
+                    required: true
                 }
             },
             messages: { 
@@ -44,7 +47,10 @@ var Script = function () {
                 },
 
                 FechaInicio: {
-                    required: "POr favor ingresa la fecha de inicio"
+                    required: "Por favor ingresa la fecha de inicio."
+                },
+                Cargo: {
+                    required: "Por favor ingrese el cargo de la persona."
                 }
             }
         });
