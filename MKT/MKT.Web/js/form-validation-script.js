@@ -17,11 +17,11 @@ var Script = function () {
             rules: {
                 CodigoNomina: {
                     required: true,
-                    minlength: 6
+                    minlength: 5
                 },
                 Nombre: {
                     required: true,
-                    minlength: 6
+                    minlength: 5
                 },
                 Entidad: {
                     required: true
@@ -36,11 +36,11 @@ var Script = function () {
             messages: { 
                 CodigoNomina: {
                     required: "Por favor ingresa el c\u00F3digo de nomina.",
-                    minlength: "El c\u00F3digo de nomina debe ser igual a 6 d\u00EDgitos."
+                    minlength: "El c\u00F3digo de nomina debe ser igual a 5 d\u00EDgitos."
                 },
                 Nombre: {
                     required: "Por favor ingresa el nombre completo",
-                    minlength: "El nombre completo no debe ser menor a 6 d\u00EDgitos."
+                    minlength: "El nombre completo no debe ser menor a 5 d\u00EDgitos."
                 },
                 Entidad: {
                     required: "Por favor ingrese la entidad."

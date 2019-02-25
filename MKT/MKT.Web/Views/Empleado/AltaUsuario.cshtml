@@ -8,72 +8,73 @@
     <div class="col-lg-12">
         <section class="panel">
             <header class="panel-heading">
-                Alta de gerente
+                Alta de empleado
             </header>
             <div class="panel-body">
                 <div class="form">
                     @{
-        using (Html.BeginForm("SaveEmpleado", "Empleado", Model, FormMethod.Post, new { @class = "form-validate form-horizontal", @id = "register_form" }))
-        {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true)
+                        using (Html.BeginForm("SaveEmpleado", "Empleado", Model, FormMethod.Post, new { @class = "form-validate form-horizontal", @id = "register_form" }))
+                        {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
 
-                <div class="form-group ">
-                    <label for="CodigoNomina" class="control-label col-lg-2">Código de nómina: <span class="required">*</span></label>
-                    <div class="col-lg-10">
-                        @Html.TextBoxFor(model => model.CodigoNomina, new { @id = "CodigoNomina", @class = "form-control" })
-                    </div>
-                </div>
+                                <div class="form-group ">
+                                    <label for="CodigoNomina" class="control-label col-lg-2">Código de nómina: <span class="required">*</span></label>
+                                    <div class="col-lg-10">
+                                        @Html.TextBoxFor(model => model.CodigoNomina, new { @id = "CodigoNomina", @class = "form-control" })
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group ">
+                                    <label for="Nombre" class="control-label col-lg-2">Nombre: <span class="required">*</span></label>
+                                    <div class="col-lg-10">
+                                        @Html.TextBoxFor(model => model.Nombre, new { @id = "Nombre", @class = "form-control" })
+                                    </div>
+                                </div>
 
-                <div class="form-group ">
-                    <label for="Nombre" class="control-label col-lg-2">Nombre: <span class="required">*</span></label>
-                    <div class="col-lg-10">
-                        @Html.TextBoxFor(model => model.Nombre, new { @id = "Nombre", @class = "form-control" })
-                    </div>
-                </div>
+                                <div class="form-group ">
+                                    <label for="Entidad" class="control-label col-lg-2">Entidad: <span class="required">*</span></label>
+                                    <div class="col-lg-10">
+                                        @Html.TextBoxFor(model => model.Entidad, new { @id = "Entidad", @class = "form-control" })
+                                    </div>
+                                </div>
 
-                <div class="form-group ">
-                    <label for="Entidad" class="control-label col-lg-2">Entidad: <span class="required">*</span></label>
-                    <div class="col-lg-10">
-                        @Html.TextBoxFor(model => model.Entidad, new { @id = "Entidad", @class = "form-control" })
-                    </div>
-                </div>
+                                <div class="form-group ">
+                                    <label for="Cargo" class="control-label col-lg-2">Cargo: <span class="required">*</span></label>
+                                    <div class="col-lg-10">
+                                        @Html.TextBoxFor(model => model.Cargo, new { @id = "Cargo", @class = "form-control" })
+                                    </div>
+                                </div>
 
-                <div class="form-group ">
-                    <label for="Cargo" class="control-label col-lg-2">Cargo: <span class="required">*</span></label>
-                    <div class="col-lg-10">
-                        @Html.TextBoxFor(model => model.Cargo, new { @id = "Cargo", @class = "form-control" })
-                    </div>
-                </div>
+                                <div class="form-group ">
+                                    <label for="agree" class="control-label col-lg-2 col-sm-3">Es activo: </label>
+                                    <div class="col-lg-10 col-sm-9">
+                                        @*<input type="checkbox" style="width: 20px" class="checkbox form-control" id="agree" name="agree" />*@
+                                        @Html.CheckBoxFor(model => model.IsActive, new { @id = "IsActive", @class = "checkbox form-control", style = "width: 20px" })
+                                    </div>
+                                </div>
 
-                <div class="form-group ">
-                    <label for="agree" class="control-label col-lg-2 col-sm-3">Es activo: </label>
-                    <div class="col-lg-10 col-sm-9">
-                        @*<input type="checkbox" style="width: 20px" class="checkbox form-control" id="agree" name="agree" />*@
-                        @Html.CheckBoxFor(model => model.IsActive, new { @id = "IsActive", @class = "checkbox form-control", style = "width: 20px" })
-                    </div>
-                </div>
+                                <div class="form-group ">
+                                    <label for="FechaInicio" class="control-label col-lg-2">Fecha de inicio: <span class="required">*</span></label>
+                                    <div class="col-lg-10">
+                                        @Html.TextBoxFor(model => model.FechaInicio, new { @id = "FechaInicio", @class = "form-control" })
+                                    </div>
+                                </div>
 
-                <div class="form-group ">
-                    <label for="FechaInicio" class="control-label col-lg-2">Fecha de inicio: <span class="required">*</span></label>
-                    <div class="col-lg-10">
-                        @Html.TextBoxFor(model => model.FechaInicio, new { @id = "FechaInicio", @class = "form-control" })
-                    </div>
-                </div>
+                                <div class="form-group ">
+                                    <label for="FechaTermino" class="control-label col-lg-2">Fecha de termino: <span class="required">*</span></label>
+                                    <div class="col-lg-10">
+                                        @Html.TextBoxFor(model => model.FechaTermino, new { @id = "FechaTermino", @class = "form-control" })
+                                    </div>
+                                </div>
 
-                <div class="form-group ">
-                    <label for="FechaTermino" class="control-label col-lg-2">Fecha de termino: <span class="required">*</span></label>
-                    <div class="col-lg-10">
-                        @Html.TextBoxFor(model => model.FechaTermino, new { @id = "FechaTermino", @class = "form-control" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                        <button class="btn btn-primary" type="submit">Guardar</button>
-                        <button class="btn btn-default" type="button">Cancel</button>
-                    </div>
-                </div>
-}
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button class="btn btn-primary" type="submit">Guardar</button>
+                                        <button class="btn btn-default" type="button">Cancel</button>
+                                    </div>
+                                </div>
+                        }
                     }
                 </div>
             </div>

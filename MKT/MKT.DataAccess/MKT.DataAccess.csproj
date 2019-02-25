@@ -68,7 +68,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelMKT.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ServiceObjects\SIMS.cs">
+      <DependentUpon>ModelMKT.tt</DependentUpon>
+    </Compile>
     <Compile Include="ServiceObjects\SO_Gerente.cs" />
+    <Compile Include="ServiceObjects\SO_Sim.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

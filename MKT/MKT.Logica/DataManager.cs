@@ -112,5 +112,52 @@ namespace MKT.Logica
             return gerente;
         }
         #endregion
+
+        #region SIMS
+        public static int InsertSIM(DO_SIM dO_SIM)
+        {
+            SO_Sim sO_Sim = new SO_Sim();
+
+            return sO_Sim.Insert(dO_SIM.operador.IdGerente, dO_SIM.gerente.IdGerente, dO_SIM.SIM, dO_SIM.FechaSolicitud, dO_SIM.FechaEntrega);
+        } 
+
+        public static List<DO_SIM> GetAllSIM()
+        {
+            SO_Sim sO_Sim = new SO_Sim();
+
+            List<DO_SIM> ListaResultante = new List<DO_SIM>();
+
+            IList informacionBD = sO_Sim.GetAll();
+
+            if (informacionBD != null)
+            {
+                foreach (var item in informacionBD)
+                {
+                    DO_SIM dO_SIM = new DO_SIM();
+
+                    Type tipo = item.GetType();
+
+                    dO_SIM.ID_SIM = (int)tipo.GetProperty("ID_SIMS").GetValue(item, null);
+                    dO_SIM.operador = new DO_Gerente();
+
+                    DO_Gerente operador = new DO_Gerente();
+                    operador = GetGerente((int)tipo.GetProperty("ID_OPERADOR").GetValue(item, null));
+                    dO_SIM.operador = operador;
+                    
+                    DO_Gerente gerente = new DO_Gerente();
+                    gerente = GetGerente((int)tipo.GetProperty("ID_GERENTE").GetValue(item, null));
+                    dO_SIM.gerente = gerente;
+
+                    dO_SIM.SIM = (string)tipo.GetProperty("SIM").GetValue(item, null);
+                    dO_SIM.FechaSolicitud = (DateTime)tipo.GetProperty("FECHA_SOLICITUD").GetValue(item, null);
+                    dO_SIM.FechaEntrega = (DateTime)tipo.GetProperty("FECHA_ENTREGA").GetValue(item, null);
+                    
+                    ListaResultante.Add(dO_SIM);
+                }
+            }
+
+            return ListaResultante;
+        }
+        #endregion
     }
 }
