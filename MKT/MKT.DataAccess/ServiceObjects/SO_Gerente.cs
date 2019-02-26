@@ -65,6 +65,7 @@ namespace MKT.DataAccess.ServiceObjects
 
         public int Insert(string codigoNomina, string nombre, string entidad, bool activo, DateTime fechaInicio, DateTime fechaTermino, string cargo)
         {
+            
             try
             {
                 using (var Conexion = new EntitiesMKT())
@@ -77,8 +78,12 @@ namespace MKT.DataAccess.ServiceObjects
                     gerente.Entidad = entidad;
                     gerente.Activo = activo;
                     gerente.FechaInicio = fechaInicio;
-                    gerente.FechaTermino = fechaTermino;
 
+                    if (fechaTermino != DateTime.MinValue)
+                    {
+                        gerente.FechaTermino = fechaTermino;
+                    }
+                    
                     Conexion.Gerente.Add(gerente);
 
                     Conexion.SaveChanges();
@@ -86,7 +91,7 @@ namespace MKT.DataAccess.ServiceObjects
                     return gerente.Id;
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception er)
             {
                 return 0;
             }
@@ -132,7 +137,7 @@ namespace MKT.DataAccess.ServiceObjects
                     return Conexion.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception er)
             {
                 return 0;
             }

@@ -15,7 +15,7 @@
             <table class="table table-striped table-advance table-hover">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.CodigoNomina)
+                        Código de Nomina
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Nombre)
@@ -27,13 +27,13 @@
                         @Html.DisplayNameFor(model => model.Cargo)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.IsActive)
+                        Activo ?
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.FechaInicio)
+                        Fecha de inicio
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.FechaTermino)
+                        Fecha de termino
                     </th>
                     <th></th>
                 </tr>
@@ -60,7 +60,16 @@
                         @Html.DisplayFor(modelItem => item.FechaInicio)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.FechaTermino)
+                        @{
+                            if (item.FechaTermino != DateTime.MinValue)
+                            {
+                                @Html.DisplayFor(modelItem => item.FechaTermino);
+                            }
+                            else
+                            {
+                                @Html.Label("SinFecha", "-------");
+                            }
+                        }
                     </td>
                     <td>
                         <div>

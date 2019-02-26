@@ -34,7 +34,12 @@ namespace MKT.Logica
                     gerente.Entidad = (string)tipo.GetProperty("Entidad").GetValue(itemGerente, null);
                     gerente.IsActive = (bool)tipo.GetProperty("Activo").GetValue(itemGerente, null);
                     gerente.FechaInicio = (DateTime)tipo.GetProperty("FechaInicio").GetValue(itemGerente, null);
-                    gerente.FechaTermino = (DateTime)tipo.GetProperty("FechaTermino").GetValue(itemGerente, null);
+
+                    if (Convert.ToDateTime(tipo.GetProperty("FechaTermino").GetValue(itemGerente, null)) != DateTime.MinValue)
+                    {
+                        gerente.FechaTermino = (DateTime)tipo.GetProperty("FechaTermino").GetValue(itemGerente, null);
+                    }
+
                     gerente.Cargo = (string)tipo.GetProperty("Cargo").GetValue(itemGerente, null);
 
                     ListadoGerentes.Add(gerente);
@@ -105,7 +110,12 @@ namespace MKT.Logica
                     gerente.Entidad = (string)tipo.GetProperty("Entidad").GetValue(itemGerente, null);
                     gerente.IsActive = (bool)tipo.GetProperty("Activo").GetValue(itemGerente, null);
                     gerente.FechaInicio = (DateTime)tipo.GetProperty("FechaInicio").GetValue(itemGerente, null);
-                    gerente.FechaTermino = (DateTime)tipo.GetProperty("FechaTermino").GetValue(itemGerente, null);
+
+                    if (Convert.ToDateTime(tipo.GetProperty("FechaTermino").GetValue(itemGerente, null)) != DateTime.MinValue)
+                    {
+                        gerente.FechaTermino = (DateTime)tipo.GetProperty("FechaTermino").GetValue(itemGerente, null);
+                    }
+                    
                     gerente.Cargo = (string)tipo.GetProperty("Cargo").GetValue(itemGerente, null);
                 }
             }
