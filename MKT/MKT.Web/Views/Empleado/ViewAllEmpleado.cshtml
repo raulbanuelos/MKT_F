@@ -57,7 +57,16 @@
                         @Html.DisplayFor(modelItem => item.IsActive)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.FechaInicio)
+                        @{
+                            if (item.FechaInicio != DateTime.MinValue)
+                            {
+                                @Html.DisplayFor(modelItem => item.FechaInicio);
+                            }
+                            else
+                            {
+                                 @Html.Label("SinFecha", "-------");
+                            }
+                       }
                     </td>
                     <td>
                         @{
