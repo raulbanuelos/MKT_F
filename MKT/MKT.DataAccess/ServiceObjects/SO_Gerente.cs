@@ -9,11 +9,19 @@ namespace MKT.DataAccess.ServiceObjects
     {
         public IList GetAllGerente()
         {
-            using (var Conexion = new EntitiesMKT())
+            try
             {
-                var ListaGerentes = (from a in Conexion.Gerente
-                             select a).ToList();
-                return ListaGerentes;
+                using (var Conexion = new EntitiesMKT())
+                {
+                    var ListaGerentes = (from a in Conexion.Gerente
+                                         select a).ToList();
+                    return ListaGerentes;
+                }
+            }
+            catch (Exception er)
+            {
+
+                throw;
             }
         }
 

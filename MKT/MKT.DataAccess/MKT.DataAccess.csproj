@@ -75,12 +75,14 @@
     <Compile Include="ServiceObjects\SO_Sim.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="ServiceObjects\ModelMKT.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelMKT.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="packages.config" />
     <None Include="ServiceObjects\ModelMKT.edmx.diagram">
       <DependentUpon>ModelMKT.edmx</DependentUpon>
     </None>
