@@ -12,20 +12,15 @@ namespace MKT.DataAccess.ServiceObjects
     using System;
     using System.Collections.Generic;
     
-    public partial class SIMS
+    public partial class SIMS_GERENTE
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SIMS()
-        {
-            this.SIMS_GERENTE = new HashSet<SIMS_GERENTE>();
-        }
-    
-        public int ID_SIMS { get; set; }
-        public Nullable<int> ID_OPERADOR { get; set; }
-        public string SIM { get; set; }
+        public int ID_SIM_GERENTE { get; set; }
+        public int ID_SIM { get; set; }
+        public int ID_GERENTE { get; set; }
+        public Nullable<System.DateTime> FECHA_SOLICITUD { get; set; }
+        public Nullable<System.DateTime> FECHA_ENTREGA { get; set; }
     
         public virtual Gerente Gerente { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SIMS_GERENTE> SIMS_GERENTE { get; set; }
+        public virtual SIMS SIMS { get; set; }
     }
 }

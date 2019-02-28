@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MKT.DataAccess.SQLServer;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +11,9 @@ namespace MKT.DataAccess.ServiceObjects
 {
     public class SO_Sim
     {
-        public int Insert(int idOperador, int idGerente, string sim, DateTime fechaSolicitud, DateTime fechaEntrega)
+        private string SP_GET_SIMS = "SP_GET_SIMS";
+
+        public int Insert(int idOperador, string sim)
         {
             try
             {
@@ -18,10 +22,7 @@ namespace MKT.DataAccess.ServiceObjects
                     SIMS sIMS = new SIMS();
 
                     sIMS.ID_OPERADOR = idOperador;
-                    sIMS.ID_GERENTE = idGerente;
                     sIMS.SIM = sim;
-                    sIMS.FECHA_SOLICITUD = fechaSolicitud;
-                    sIMS.FECHA_ENTREGA = fechaEntrega;
 
                     Conexion.SIMS.Add(sIMS);
 
@@ -36,17 +37,17 @@ namespace MKT.DataAccess.ServiceObjects
             }
         }
 
-        public IList GetAll()
+        public DataSet GetAll()
         {
             try
             {
-                using (var Conexion = new EntitiesMKT())
-                {
-                    var lista = (from a in Conexion.SIMS
-                                 select a).OrderByDescending(x => x.FECHA_SOLICITUD).ToList();
+                DataSet datos = new DataSet();
+                Desing_SQL conexion = new Desing_SQL();
+                Dictionary<string, object> parametros = new Dictionary<string, object>();
 
-                    return lista;
-                }
+                datos = conexion.EjecutarStoredProcedure(SP_GET_SIMS, parametros);
+
+                return datos;
             }
             catch (Exception)
             {

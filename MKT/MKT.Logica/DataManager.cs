@@ -3,6 +3,7 @@ using MKT.Logica.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -136,7 +137,7 @@ namespace MKT.Logica
         {
             SO_Sim sO_Sim = new SO_Sim();
 
-            return sO_Sim.Insert(dO_SIM.operador.IdGerente, dO_SIM.gerente.IdGerente, dO_SIM.SIM, dO_SIM.FechaSolicitud, dO_SIM.FechaEntrega);
+            return sO_Sim.Insert(dO_SIM.operador.IdGerente, dO_SIM.SIM);
         } 
 
         public static List<DO_SIM> GetAllSIM()
@@ -145,32 +146,28 @@ namespace MKT.Logica
 
             List<DO_SIM> ListaResultante = new List<DO_SIM>();
 
-            IList informacionBD = sO_Sim.GetAll();
+            DataSet informacionBD = sO_Sim.GetAll();
 
             if (informacionBD != null)
             {
-                foreach (var item in informacionBD)
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
                 {
-                    DO_SIM dO_SIM = new DO_SIM();
+                    foreach (DataRow item in informacionBD.Tables[0].Rows)
+                    {
+                        DO_SIM dO_SIM = new DO_SIM();
+                        dO_SIM.ID_SIM = Convert.ToInt32(item["ID_SIMS"].ToString());
+                        dO_SIM.SIM = item["SIM"].ToString();
+                        dO_SIM.operador = GetGerente((int)item["ID_OPERADOR"]);
+                        if (!string.IsNullOrEmpty(item["ID_SIM_GERENTE"].ToString()))
+                        {
+                            dO_SIM.gerente = GetGerente((int)item["ID_GERENTE"]);
+                            dO_SIM.FechaSolicitud = Convert.ToDateTime(item["FECHA_SOLICITUD"].ToString());
+                            dO_SIM.FechaEntrega = Convert.ToDateTime(item["FECHA_ENTREGA"].ToString());
+                        }
 
-                    Type tipo = item.GetType();
 
-                    dO_SIM.ID_SIM = (int)tipo.GetProperty("ID_SIMS").GetValue(item, null);
-                    dO_SIM.operador = new DO_Gerente();
-
-                    DO_Gerente operador = new DO_Gerente();
-                    operador = GetGerente((int)tipo.GetProperty("ID_OPERADOR").GetValue(item, null));
-                    dO_SIM.operador = operador;
-                    
-                    DO_Gerente gerente = new DO_Gerente();
-                    gerente = GetGerente((int)tipo.GetProperty("ID_GERENTE").GetValue(item, null));
-                    dO_SIM.gerente = gerente;
-
-                    dO_SIM.SIM = (string)tipo.GetProperty("SIM").GetValue(item, null);
-                    dO_SIM.FechaSolicitud = (DateTime)tipo.GetProperty("FECHA_SOLICITUD").GetValue(item, null);
-                    dO_SIM.FechaEntrega = (DateTime)tipo.GetProperty("FECHA_ENTREGA").GetValue(item, null);
-                    
-                    ListaResultante.Add(dO_SIM);
+                        ListaResultante.Add(dO_SIM);
+                    }
                 }
             }
 

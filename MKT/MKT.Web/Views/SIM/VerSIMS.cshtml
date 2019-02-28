@@ -53,10 +53,29 @@
                                 @Html.DisplayFor(modelItem => item.gerente.Nombre)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.FechaSolicitud)
+                                @{
+                                    if (item.FechaSolicitud != DateTime.MinValue)
+                                    {
+                                        @Html.DisplayFor(modelItem => item.FechaSolicitud)
+
+                                    }
+                                    else
+                                    {
+                                        @Html.Label("SinFecha", "--------------")
+                                    }
+                                }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.FechaEntrega)
+                                @{
+                                    if (item.FechaEntrega != DateTime.MinValue)
+                                    {
+                                        @Html.DisplayFor(modelItem => item.FechaEntrega)
+                                    }
+                                    else
+                                    {
+                                        @Html.Label("SinFecha", "----------")
+                                    }
+                                }
                             </td>
                         </tr>
                     }
@@ -85,11 +104,9 @@
                     "infoEmpty": "Ningún registro disponible",
                     "infoFiltered": "(Filtrando _MAX_ Total de registro)",
                     "sSearch": "Buscar: ",
-
                 }
             });
             $('.dataTables_length').addClass('bs-select');
         });
     </script>
 }
-

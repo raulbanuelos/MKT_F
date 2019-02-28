@@ -17,8 +17,8 @@ namespace MKT.DataAccess.ServiceObjects
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Gerente()
         {
+            this.SIMS_GERENTE = new HashSet<SIMS_GERENTE>();
             this.SIMS = new HashSet<SIMS>();
-            this.SIMS1 = new HashSet<SIMS>();
         }
     
         public int Id { get; set; }
@@ -31,8 +31,8 @@ namespace MKT.DataAccess.ServiceObjects
         public Nullable<System.DateTime> FechaTermino { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SIMS> SIMS { get; set; }
+        public virtual ICollection<SIMS_GERENTE> SIMS_GERENTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SIMS> SIMS1 { get; set; }
+        public virtual ICollection<SIMS> SIMS { get; set; }
     }
 }

@@ -35,7 +35,7 @@ namespace MKT.Web.Controllers
             return View("AltaSIM", dO_SIM);
         }
 
-        public ActionResult SaveSIM([Bind(Include = "SIM,FechaSolicitud,FechaEntrega,operadorSelected,gerenteSelected")] DO_SIM dO_SIM)
+        public ActionResult SaveSIM([Bind(Include = "SIM,operadorSelected")] DO_SIM dO_SIM)
         {
             DO_Gerente operador = DataManager.GetGerente(Convert.ToInt32(dO_SIM.operadorSelected));
             DO_Gerente gerente = DataManager.GetGerente(Convert.ToInt32(dO_SIM.gerenteSelected));

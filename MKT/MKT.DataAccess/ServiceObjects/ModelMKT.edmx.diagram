@@ -5,10 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="49360a2a8b594cfba1f6aac157c930f3" Name="Diagram1">
-        <EntityTypeShape EntityType="MKT.DataAccess.ServiceObjects.Gerente" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MKT.DataAccess.ServiceObjects.SIMS" Width="2.375" PointX="6.875" PointY="1.125" />
-        <AssociationConnector Association="MKT.DataAccess.ServiceObjects.FK_SIMS_Gerente" />
-        <AssociationConnector Association="MKT.DataAccess.ServiceObjects.FK_SIMS_Gerente1" />
+        <EntityTypeShape EntityType="MKT.DataAccess.ServiceObjects.Gerente" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="MKT.DataAccess.ServiceObjects.SIMS" Width="1.5" PointX="3" PointY="2.625" />
+        <EntityTypeShape EntityType="MKT.DataAccess.ServiceObjects.SIMS_GERENTE" Width="1.5" PointX="5.25" PointY="2.5" />
+        <AssociationConnector Association="MKT.DataAccess.ServiceObjects.FK_SIMS_GERENTE_Gerente" />
+        <AssociationConnector Association="MKT.DataAccess.ServiceObjects.FK_SIMS_Gerente2" />
+        <AssociationConnector Association="MKT.DataAccess.ServiceObjects.FK_SIMS_GERENTE_SIMS" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -27,5 +27,6 @@ namespace MKT.DataAccess.ServiceObjects
     
         public virtual DbSet<Gerente> Gerente { get; set; }
         public virtual DbSet<SIMS> SIMS { get; set; }
+        public virtual DbSet<SIMS_GERENTE> SIMS_GERENTE { get; set; }
     }
 }

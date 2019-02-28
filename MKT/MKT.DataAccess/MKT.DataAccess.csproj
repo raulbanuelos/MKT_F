@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -71,8 +72,12 @@
     <Compile Include="ServiceObjects\SIMS.cs">
       <DependentUpon>ModelMKT.tt</DependentUpon>
     </Compile>
+    <Compile Include="ServiceObjects\SIMS_GERENTE.cs">
+      <DependentUpon>ModelMKT.tt</DependentUpon>
+    </Compile>
     <Compile Include="ServiceObjects\SO_Gerente.cs" />
     <Compile Include="ServiceObjects\SO_Sim.cs" />
+    <Compile Include="SQLServer\Desing_SQL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -102,5 +107,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

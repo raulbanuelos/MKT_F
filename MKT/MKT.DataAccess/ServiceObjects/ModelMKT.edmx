@@ -24,12 +24,43 @@
           </Key>
           <Property Name="ID_SIMS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_OPERADOR" Type="int" />
-          <Property Name="ID_GERENTE" Type="int" />
           <Property Name="SIM" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="SIMS_GERENTE">
+          <Key>
+            <PropertyRef Name="ID_SIM_GERENTE" />
+          </Key>
+          <Property Name="ID_SIM_GERENTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_SIM" Type="int" Nullable="false" />
+          <Property Name="ID_GERENTE" Type="int" Nullable="false" />
           <Property Name="FECHA_SOLICITUD" Type="date" />
           <Property Name="FECHA_ENTREGA" Type="date" />
         </EntityType>
-        <Association Name="FK_SIMS_Gerente">
+        <Association Name="FK_SIMS_GERENTE_Gerente">
+          <End Role="Gerente" Type="Self.Gerente" Multiplicity="1" />
+          <End Role="SIMS_GERENTE" Type="Self.SIMS_GERENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gerente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SIMS_GERENTE">
+              <PropertyRef Name="ID_GERENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIMS_GERENTE_SIMS">
+          <End Role="SIMS" Type="Self.SIMS" Multiplicity="1" />
+          <End Role="SIMS_GERENTE" Type="Self.SIMS_GERENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIMS">
+              <PropertyRef Name="ID_SIMS" />
+            </Principal>
+            <Dependent Role="SIMS_GERENTE">
+              <PropertyRef Name="ID_SIM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIMS_Gerente2">
           <End Role="Gerente" Type="Self.Gerente" Multiplicity="0..1" />
           <End Role="SIMS" Type="Self.SIMS" Multiplicity="*" />
           <ReferentialConstraint>
@@ -41,26 +72,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SIMS_Gerente1">
-          <End Role="Gerente" Type="Self.Gerente" Multiplicity="0..1" />
-          <End Role="SIMS" Type="Self.SIMS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gerente">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SIMS">
-              <PropertyRef Name="ID_GERENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="MKTDataAccessServiceObjectsStoreContainer">
           <EntitySet Name="Gerente" EntityType="Self.Gerente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SIMS" EntityType="Self.SIMS" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_SIMS_Gerente" Association="Self.FK_SIMS_Gerente">
+          <EntitySet Name="SIMS_GERENTE" EntityType="Self.SIMS_GERENTE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SIMS_GERENTE_Gerente" Association="Self.FK_SIMS_GERENTE_Gerente">
             <End Role="Gerente" EntitySet="Gerente" />
-            <End Role="SIMS" EntitySet="SIMS" />
+            <End Role="SIMS_GERENTE" EntitySet="SIMS_GERENTE" />
           </AssociationSet>
-          <AssociationSet Name="FK_SIMS_Gerente1" Association="Self.FK_SIMS_Gerente1">
+          <AssociationSet Name="FK_SIMS_GERENTE_SIMS" Association="Self.FK_SIMS_GERENTE_SIMS">
+            <End Role="SIMS" EntitySet="SIMS" />
+            <End Role="SIMS_GERENTE" EntitySet="SIMS_GERENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIMS_Gerente2" Association="Self.FK_SIMS_Gerente2">
             <End Role="Gerente" EntitySet="Gerente" />
             <End Role="SIMS" EntitySet="SIMS" />
           </AssociationSet>
@@ -72,13 +96,18 @@
         <EntityContainer Name="EntitiesMKT" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Gerente" EntityType="MKT.DataAccess.ServiceObjects.Gerente" />
           <EntitySet Name="SIMS" EntityType="MKT.DataAccess.ServiceObjects.SIMS" />
-          <AssociationSet Name="FK_SIMS_Gerente" Association="MKT.DataAccess.ServiceObjects.FK_SIMS_Gerente">
+          <EntitySet Name="SIMS_GERENTE" EntityType="MKT.DataAccess.ServiceObjects.SIMS_GERENTE" />
+          <AssociationSet Name="FK_SIMS_GERENTE_Gerente" Association="MKT.DataAccess.ServiceObjects.FK_SIMS_GERENTE_Gerente">
+            <End Role="Gerente" EntitySet="Gerente" />
+            <End Role="SIMS_GERENTE" EntitySet="SIMS_GERENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIMS_Gerente2" Association="MKT.DataAccess.ServiceObjects.FK_SIMS_Gerente2">
             <End Role="Gerente" EntitySet="Gerente" />
             <End Role="SIMS" EntitySet="SIMS" />
           </AssociationSet>
-          <AssociationSet Name="FK_SIMS_Gerente1" Association="MKT.DataAccess.ServiceObjects.FK_SIMS_Gerente1">
-            <End Role="Gerente" EntitySet="Gerente" />
+          <AssociationSet Name="FK_SIMS_GERENTE_SIMS" Association="MKT.DataAccess.ServiceObjects.FK_SIMS_GERENTE_SIMS">
             <End Role="SIMS" EntitySet="SIMS" />
+            <End Role="SIMS_GERENTE" EntitySet="SIMS_GERENTE" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Gerente">
@@ -93,8 +122,8 @@
           <Property Name="Activo" Type="Boolean" />
           <Property Name="FechaInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaTermino" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="SIMS" Relationship="MKT.DataAccess.ServiceObjects.FK_SIMS_Gerente" FromRole="Gerente" ToRole="SIMS" />
-          <NavigationProperty Name="SIMS1" Relationship="MKT.DataAccess.ServiceObjects.FK_SIMS_Gerente1" FromRole="Gerente" ToRole="SIMS" />
+          <NavigationProperty Name="SIMS_GERENTE" Relationship="MKT.DataAccess.ServiceObjects.FK_SIMS_GERENTE_Gerente" FromRole="Gerente" ToRole="SIMS_GERENTE" />
+          <NavigationProperty Name="SIMS" Relationship="MKT.DataAccess.ServiceObjects.FK_SIMS_Gerente2" FromRole="Gerente" ToRole="SIMS" />
         </EntityType>
         <EntityType Name="SIMS">
           <Key>
@@ -102,14 +131,35 @@
           </Key>
           <Property Name="ID_SIMS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_OPERADOR" Type="Int32" />
-          <Property Name="ID_GERENTE" Type="Int32" />
           <Property Name="SIM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Gerente" Relationship="MKT.DataAccess.ServiceObjects.FK_SIMS_Gerente2" FromRole="SIMS" ToRole="Gerente" />
+          <NavigationProperty Name="SIMS_GERENTE" Relationship="MKT.DataAccess.ServiceObjects.FK_SIMS_GERENTE_SIMS" FromRole="SIMS" ToRole="SIMS_GERENTE" />
+        </EntityType>
+        <EntityType Name="SIMS_GERENTE">
+          <Key>
+            <PropertyRef Name="ID_SIM_GERENTE" />
+          </Key>
+          <Property Name="ID_SIM_GERENTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_SIM" Type="Int32" Nullable="false" />
+          <Property Name="ID_GERENTE" Type="Int32" Nullable="false" />
           <Property Name="FECHA_SOLICITUD" Type="DateTime" Precision="0" />
           <Property Name="FECHA_ENTREGA" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Gerente" Relationship="MKT.DataAccess.ServiceObjects.FK_SIMS_Gerente" FromRole="SIMS" ToRole="Gerente" />
-          <NavigationProperty Name="Gerente1" Relationship="MKT.DataAccess.ServiceObjects.FK_SIMS_Gerente1" FromRole="SIMS" ToRole="Gerente" />
+          <NavigationProperty Name="Gerente" Relationship="MKT.DataAccess.ServiceObjects.FK_SIMS_GERENTE_Gerente" FromRole="SIMS_GERENTE" ToRole="Gerente" />
+          <NavigationProperty Name="SIMS" Relationship="MKT.DataAccess.ServiceObjects.FK_SIMS_GERENTE_SIMS" FromRole="SIMS_GERENTE" ToRole="SIMS" />
         </EntityType>
-        <Association Name="FK_SIMS_Gerente">
+        <Association Name="FK_SIMS_GERENTE_Gerente">
+          <End Type="MKT.DataAccess.ServiceObjects.Gerente" Role="Gerente" Multiplicity="1" />
+          <End Type="MKT.DataAccess.ServiceObjects.SIMS_GERENTE" Role="SIMS_GERENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gerente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SIMS_GERENTE">
+              <PropertyRef Name="ID_GERENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIMS_Gerente2">
           <End Type="MKT.DataAccess.ServiceObjects.Gerente" Role="Gerente" Multiplicity="0..1" />
           <End Type="MKT.DataAccess.ServiceObjects.SIMS" Role="SIMS" Multiplicity="*" />
           <ReferentialConstraint>
@@ -121,19 +171,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SIMS_Gerente1">
-          <End Type="MKT.DataAccess.ServiceObjects.Gerente" Role="Gerente" Multiplicity="0..1" />
-          <End Type="MKT.DataAccess.ServiceObjects.SIMS" Role="SIMS" Multiplicity="*" />
+        <Association Name="FK_SIMS_GERENTE_SIMS">
+          <End Type="MKT.DataAccess.ServiceObjects.SIMS" Role="SIMS" Multiplicity="1" />
+          <End Type="MKT.DataAccess.ServiceObjects.SIMS_GERENTE" Role="SIMS_GERENTE" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Gerente">
-              <PropertyRef Name="Id" />
+            <Principal Role="SIMS">
+              <PropertyRef Name="ID_SIMS" />
             </Principal>
-            <Dependent Role="SIMS">
-              <PropertyRef Name="ID_GERENTE" />
+            <Dependent Role="SIMS_GERENTE">
+              <PropertyRef Name="ID_SIM" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -156,12 +206,20 @@
           <EntitySetMapping Name="SIMS">
             <EntityTypeMapping TypeName="MKT.DataAccess.ServiceObjects.SIMS">
               <MappingFragment StoreEntitySet="SIMS">
-                <ScalarProperty Name="FECHA_ENTREGA" ColumnName="FECHA_ENTREGA" />
-                <ScalarProperty Name="FECHA_SOLICITUD" ColumnName="FECHA_SOLICITUD" />
                 <ScalarProperty Name="SIM" ColumnName="SIM" />
-                <ScalarProperty Name="ID_GERENTE" ColumnName="ID_GERENTE" />
                 <ScalarProperty Name="ID_OPERADOR" ColumnName="ID_OPERADOR" />
                 <ScalarProperty Name="ID_SIMS" ColumnName="ID_SIMS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIMS_GERENTE">
+            <EntityTypeMapping TypeName="MKT.DataAccess.ServiceObjects.SIMS_GERENTE">
+              <MappingFragment StoreEntitySet="SIMS_GERENTE">
+                <ScalarProperty Name="FECHA_ENTREGA" ColumnName="FECHA_ENTREGA" />
+                <ScalarProperty Name="FECHA_SOLICITUD" ColumnName="FECHA_SOLICITUD" />
+                <ScalarProperty Name="ID_GERENTE" ColumnName="ID_GERENTE" />
+                <ScalarProperty Name="ID_SIM" ColumnName="ID_SIM" />
+                <ScalarProperty Name="ID_SIM_GERENTE" ColumnName="ID_SIM_GERENTE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
