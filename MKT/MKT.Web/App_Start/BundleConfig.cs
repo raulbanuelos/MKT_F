@@ -38,7 +38,8 @@ namespace MKT.Web
                       "~/css/elegant-icons-style.css",
                       "~/css/font-awesome.min.css",
                       "~/css/style.css",
-                      "~/css/style-responsive.css"
+                      "~/css/style-responsive.css",
+                      "~/css/jquery.dataTables.min.css"
                       ));
 
 

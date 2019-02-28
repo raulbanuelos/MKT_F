@@ -26,7 +26,7 @@ namespace MKT.Web.Controllers
             ViewBag.Empleados = convert(DataManager.GetAllGerentes());
 
             DO_SIM dO_SIM = new DO_SIM();
-            dO_SIM.SIM = "El nuevo";
+            dO_SIM.SIM = "";
             dO_SIM.gerenteSelected = idGerente;
             dO_SIM.operadorSelected = idOperador;
             dO_SIM.FechaSolicitud = Convert.ToDateTime(fechaSolicitud);
