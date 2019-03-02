@@ -728,6 +728,7 @@
     <Content Include="Views\Empleado\ViewDelete.cshtml" />
     <Content Include="Views\SIM\VerSIMS.cshtml" />
     <Content Include="Views\SIM\AltaSIM.cshtml" />
+    <Content Include="Views\SIM\EditarSIM.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

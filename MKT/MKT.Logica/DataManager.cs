@@ -138,7 +138,44 @@ namespace MKT.Logica
             SO_Sim sO_Sim = new SO_Sim();
 
             return sO_Sim.Insert(dO_SIM.operador.IdGerente, dO_SIM.SIM);
-        } 
+        }
+
+        public static DO_SIM GetSIM(int idSIM)
+        {
+            DO_SIM dO_SIM = new DO_SIM();
+
+            SO_Sim sO_Sim = new SO_Sim();
+
+            DataSet informacionBD = sO_Sim.GetSIM(idSIM);
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow item in informacionBD.Tables[0].Rows)
+                    {
+                        dO_SIM = new DO_SIM();
+                        dO_SIM.ID_SIM = Convert.ToInt32(item["ID_SIMS"].ToString());
+                        dO_SIM.SIM = item["SIM"].ToString();
+                        dO_SIM.operador = GetGerente((int)item["ID_OPERADOR"]);
+                        if (!string.IsNullOrEmpty(item["ID_SIM_GERENTE"].ToString()))
+                        {
+                            dO_SIM.idSIMGerente = Convert.ToInt32(item["ID_SIM_GERENTE"].ToString());
+                            dO_SIM.gerente = GetGerente((int)item["ID_GERENTE"]);
+                            dO_SIM.FechaSolicitud = Convert.ToDateTime(item["FECHA_SOLICITUD"].ToString());
+                            dO_SIM.FechaEntrega = Convert.ToDateTime(item["FECHA_ENTREGA"].ToString());
+                        }
+                        else
+                        {
+                            dO_SIM.idSIMGerente = 0;
+                        }
+                        
+                    }
+                }
+            }
+
+            return dO_SIM;
+        }
 
         public static List<DO_SIM> GetAllSIM()
         {
@@ -172,6 +209,22 @@ namespace MKT.Logica
             }
 
             return ListaResultante;
+        }
+        #endregion
+
+        #region SIM GERENTE
+        public static int InsertSIMGerente(DateTime fechaEntrega, DateTime fechaSolicitud, int idSIM, int idGerente)
+        {
+            SO_SIM_Gerente sO_SIM_Gerente = new SO_SIM_Gerente();
+
+            return sO_SIM_Gerente.Insert(fechaEntrega, fechaSolicitud, idSIM, idGerente);
+        } 
+
+        public static int UpdateSIMGerente(DateTime fechaEntrega, DateTime fechaSolicitud, int idSIM, int idGerente, int idSIMGerente)
+        {
+            SO_SIM_Gerente sO_SIM_Gerente = new SO_SIM_Gerente();
+
+            return sO_SIM_Gerente.Update(fechaEntrega, fechaSolicitud, idSIM, idGerente, idSIMGerente);
         }
         #endregion
     }

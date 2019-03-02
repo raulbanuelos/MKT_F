@@ -50,6 +50,39 @@ namespace MKT.Web.Controllers
             return RedirectToAction("AltaSIM2", new { idOperador = dO_SIM.operadorSelected , idGerente = dO_SIM.gerenteSelected, fechaSolicitud = dO_SIM.FechaSolicitud, fechaEntrega =  dO_SIM.FechaEntrega });
         }
 
+        public ActionResult SaveChangeSIM([Bind(Include = "ID_SIM,FechaSolicitud,FechaEntrega,operadorSelected,gerenteSelected,idSIMGerente,SIM")] DO_SIM dO_SIM)
+        {
+            if (dO_SIM.idSIMGerente == 0)
+            {
+                DataManager.InsertSIMGerente(dO_SIM.FechaEntrega, dO_SIM.FechaSolicitud, dO_SIM.ID_SIM, Convert.ToInt32(dO_SIM.gerenteSelected));
+            }
+            else
+            {
+                DataManager.UpdateSIMGerente(dO_SIM.FechaEntrega, dO_SIM.FechaSolicitud, dO_SIM.ID_SIM, Convert.ToInt32(dO_SIM.gerenteSelected), dO_SIM.idSIMGerente);
+            }
+
+            return RedirectToAction("VerSIMS");
+        }
+
+        public ActionResult EditarSIM(int idSIM)
+        {
+            DO_SIM dO_SIM = DataManager.GetSIM(idSIM);
+            List<SelectListItem> list = new List<SelectListItem>();
+            list = convert(DataManager.GetAllGerentes());
+            dO_SIM.operadorSelected = dO_SIM.operador.IdGerente.ToString();
+            if (dO_SIM.gerente is null)
+            {
+                dO_SIM.gerenteSelected = "0";
+            }
+            else
+            {
+                dO_SIM.gerenteSelected = dO_SIM.gerente.IdGerente.ToString();
+            }
+
+            ViewBag.Empleados = list;
+            return View(dO_SIM);
+        }
+
         private List<SelectListItem> convert(List<DO_Gerente> dO_Gerentes)
         {
             List<SelectListItem> selectListItems = new List<SelectListItem>();

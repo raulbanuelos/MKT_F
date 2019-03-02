@@ -12,6 +12,7 @@ namespace MKT.DataAccess.ServiceObjects
     public class SO_Sim
     {
         private string SP_GET_SIMS = "SP_GET_SIMS";
+        private string SP_GET_SIMS_BYID = "SP_GET_SIMS_BYID";
 
         public int Insert(int idOperador, string sim)
         {
@@ -37,6 +38,25 @@ namespace MKT.DataAccess.ServiceObjects
             }
         }
 
+        public DataSet GetSIM(int idSIM)
+        {
+            try
+            {
+                DataSet data = new DataSet();
+                Desing_SQL conexion = new Desing_SQL();
+
+                Dictionary<string, object> parametros = new Dictionary<string, object>();
+                parametros.Add("idSIM", idSIM);
+
+                data = conexion.EjecutarStoredProcedure(SP_GET_SIMS_BYID, parametros);
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public DataSet GetAll()
         {
             try
@@ -51,8 +71,7 @@ namespace MKT.DataAccess.ServiceObjects
             }
             catch (Exception)
             {
-
-                throw;
+                return null;
             }
         }
     }

@@ -33,7 +33,9 @@
                         <th>
                             Fecha de entrega
                         </th>
-                        <th></th>
+                        <th>
+                            Acciones
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,6 +78,10 @@
                                         @Html.Label("SinFecha", "----------")
                                     }
                                 }
+                            </td>
+
+                            <td>
+                                <a class="btn btn-success" href="@Url.Action("EditarSIM", "SIM", new { idSIM = item.ID_SIM})"><i class="icon_check_alt2"></i></a>
                             </td>
                         </tr>
                     }

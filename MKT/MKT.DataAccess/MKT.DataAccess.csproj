@@ -77,6 +77,7 @@
     </Compile>
     <Compile Include="ServiceObjects\SO_Gerente.cs" />
     <Compile Include="ServiceObjects\SO_Sim.cs" />
+    <Compile Include="ServiceObjects\SO_SIM_Gerente.cs" />
     <Compile Include="SQLServer\Desing_SQL.cs" />
   </ItemGroup>
   <ItemGroup>

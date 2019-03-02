@@ -14,5 +14,7 @@ namespace MKT.Logica.Models
 
         public string operadorSelected { get; set; }
         public string gerenteSelected { get; set; }
+
+        public int idSIMGerente { get; set; }
     }
 }
