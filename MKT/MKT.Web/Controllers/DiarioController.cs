@@ -33,7 +33,7 @@ namespace MKT.Web.Controllers
                     file.SaveAs(path);
 
                     SLDocument sL = new SLDocument(path);
-                    int lotes = 5000;
+                    int lotes = 3000;
                     using (var db = new EntitiesMKT())
                     {
                         int iRow = 2;
