@@ -40,25 +40,25 @@ namespace MKT.Web.Controllers
                         while (!string.IsNullOrEmpty(sL.GetCellValueAsString(iRow, 1)))
                         {
                             Diario diario = new Diario();
-                            diario.ICC = sL.GetCellValueAsString(iRow, 1);
-                            diario.DN = sL.GetCellValueAsString(iRow, 2);
-                            diario.USUARIO = sL.GetCellValueAsString(iRow, 3);
-                            diario.NOMBRE_CLIENTE = sL.GetCellValueAsString(iRow, 4);
-                            diario.FECHA_INICIO = sL.GetCellValueAsDateTime(iRow, 5);//
-                            diario.CODIGO_NOMINA_PROMOTOR = sL.GetCellValueAsString(iRow, 6);
-                            diario.NOMBRE_PROMOTOR = sL.GetCellValueAsString(iRow, 7);
-                            diario.CODIGO_NOMINA_GERENTE = sL.GetCellValueAsString(iRow, 8);
-                            diario.ESTATUS = sL.GetCellValueAsString(iRow, 10);
-                            diario.FECHA_ESTATUS = sL.GetCellValueAsDateTime(iRow, 11);//
-                            diario.OPERADOR_ORIGEN = sL.GetCellValueAsString(iRow, 12);
-                            diario.OPERADOR_DESTINO = sL.GetCellValueAsString(iRow, 13);
-                            diario.INTERCONEXION = sL.GetCellValueAsString(iRow, 14);
-                            diario.NUMERO_FOLIO_ABD = sL.GetCellValueAsString(iRow, 20);
-                            diario.ESTADO = sL.GetCellValueAsString(iRow, 22);
-                            diario.APP_ITX = sL.GetCellValueAsString(iRow, 25);
-                            diario.VALIDACION_INTERCONEXION = sL.GetCellValueAsString(iRow, 26);
-                            diario.FECHA_RECARGA = sL.GetCellValueAsDateTime(iRow, 27);//
-                            diario.NO_RECARGA = sL.GetCellValueAsInt32(iRow, 28);
+                            diario.ICC = sL.GetCellValueAsString(iRow, 2);
+                            diario.DN = sL.GetCellValueAsString(iRow, 3);
+                            diario.USUARIO = sL.GetCellValueAsString(iRow, 4);
+                            diario.NOMBRE_CLIENTE = sL.GetCellValueAsString(iRow, 5);
+                            diario.FECHA_INICIO = sL.GetCellValueAsDateTime(iRow, 6);//
+                            diario.CODIGO_NOMINA_PROMOTOR = sL.GetCellValueAsString(iRow, 7);
+                            diario.NOMBRE_PROMOTOR = sL.GetCellValueAsString(iRow, 8);
+                            diario.CODIGO_NOMINA_GERENTE = sL.GetCellValueAsString(iRow, 9);
+                            diario.ESTATUS = sL.GetCellValueAsString(iRow, 11);
+                            diario.FECHA_ESTATUS = sL.GetCellValueAsDateTime(iRow, 12);//
+                            diario.OPERADOR_ORIGEN = sL.GetCellValueAsString(iRow, 13);
+                            diario.OPERADOR_DESTINO = sL.GetCellValueAsString(iRow, 14);
+                            diario.INTERCONEXION = sL.GetCellValueAsString(iRow, 15);
+                            diario.NUMERO_FOLIO_ABD = sL.GetCellValueAsString(iRow, 21);
+                            diario.ESTADO = sL.GetCellValueAsString(iRow, 23);
+                            diario.APP_ITX = sL.GetCellValueAsString(iRow, 26);
+                            diario.VALIDACION_INTERCONEXION = sL.GetCellValueAsString(iRow, 27);
+                            diario.FECHA_RECARGA = sL.GetCellValueAsDateTime(iRow, 28);//
+                            diario.NO_RECARGA = sL.GetCellValueAsInt32(iRow, 29);
 
                             db.Diario.Add(diario);
                             if (iRow % lotes == 0)
