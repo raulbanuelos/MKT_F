@@ -4,13 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="49360a2a8b594cfba1f6aac157c930f3" Name="Diagram1">
+      <Diagram DiagramId="49360a2a8b594cfba1f6aac157c930f3" Name="Diagram1" ZoomLevel="99">
         <EntityTypeShape EntityType="MKT.DataAccess.ServiceObjects.Gerente" Width="1.5" PointX="0.75" PointY="2.125" />
         <EntityTypeShape EntityType="MKT.DataAccess.ServiceObjects.SIMS" Width="1.5" PointX="3" PointY="2.625" />
-        <EntityTypeShape EntityType="MKT.DataAccess.ServiceObjects.SIMS_GERENTE" Width="1.5" PointX="5.25" PointY="2.5" />
+        <EntityTypeShape EntityType="MKT.DataAccess.ServiceObjects.SIMS_GERENTE" Width="1.5" PointX="6.75" PointY="1.125" />
         <AssociationConnector Association="MKT.DataAccess.ServiceObjects.FK_SIMS_GERENTE_Gerente" />
         <AssociationConnector Association="MKT.DataAccess.ServiceObjects.FK_SIMS_Gerente2" />
         <AssociationConnector Association="MKT.DataAccess.ServiceObjects.FK_SIMS_GERENTE_SIMS" />
+        <EntityTypeShape EntityType="MKT.DataAccess.ServiceObjects.Diario" Width="3.625" PointX="8.875" PointY="4" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
