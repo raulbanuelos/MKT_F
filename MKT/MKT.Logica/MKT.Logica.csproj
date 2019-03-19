@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataManager.cs" />
+    <Compile Include="Models\DO_Diario.cs" />
     <Compile Include="Models\DO_Gerente.cs" />
     <Compile Include="Models\DO_SIM.cs" />
     <Compile Include="Models\DO_Usuario.cs" />

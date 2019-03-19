@@ -51,6 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceObjects\Diario.cs">
+      <DependentUpon>ModelMKT.tt</DependentUpon>
+    </Compile>
     <Compile Include="ServiceObjects\Gerente.cs">
       <DependentUpon>ModelMKT.tt</DependentUpon>
     </Compile>

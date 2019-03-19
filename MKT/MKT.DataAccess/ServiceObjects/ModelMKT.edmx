@@ -5,6 +5,31 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MKT.DataAccess.ServiceObjects.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Diario">
+          <Key>
+            <PropertyRef Name="ID_DIARIO" />
+          </Key>
+          <Property Name="ID_DIARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ICC" Type="varchar" MaxLength="50" />
+          <Property Name="DN" Type="varchar" MaxLength="50" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="50" />
+          <Property Name="NOMBRE_CLIENTE" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_INICIO" Type="date" />
+          <Property Name="CODIGO_NOMINA_PROMOTOR" Type="varchar" MaxLength="50" />
+          <Property Name="NOMBRE_PROMOTOR" Type="varchar" MaxLength="50" />
+          <Property Name="CODIGO_NOMINA_GERENTE" Type="varchar" MaxLength="50" />
+          <Property Name="ESTATUS" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_ESTATUS" Type="date" />
+          <Property Name="OPERADOR_ORIGEN" Type="varchar" MaxLength="50" />
+          <Property Name="OPERADOR_DESTINO" Type="varchar" MaxLength="50" />
+          <Property Name="INTERCONEXION" Type="varchar" MaxLength="50" />
+          <Property Name="NUMERO_FOLIO_ABD" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="50" />
+          <Property Name="APP_ITX" Type="varchar" MaxLength="50" />
+          <Property Name="VALIDACION_INTERCONEXION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_RECARGA" Type="date" />
+          <Property Name="NO_RECARGA" Type="int" />
+        </EntityType>
         <EntityType Name="Gerente">
           <Key>
             <PropertyRef Name="Id" />
@@ -73,6 +98,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MKTDataAccessServiceObjectsStoreContainer">
+          <EntitySet Name="Diario" EntityType="Self.Diario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gerente" EntityType="Self.Gerente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SIMS" EntityType="Self.SIMS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SIMS_GERENTE" EntityType="Self.SIMS_GERENTE" Schema="dbo" store:Type="Tables" />
@@ -109,6 +135,7 @@
             <End Role="SIMS" EntitySet="SIMS" />
             <End Role="SIMS_GERENTE" EntitySet="SIMS_GERENTE" />
           </AssociationSet>
+          <EntitySet Name="Diario" EntityType="MKT.DataAccess.ServiceObjects.Diario" />
         </EntityContainer>
         <EntityType Name="Gerente">
           <Key>
@@ -183,6 +210,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Diario">
+          <Key>
+            <PropertyRef Name="ID_DIARIO" />
+          </Key>
+          <Property Name="ID_DIARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ICC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_CLIENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_INICIO" Type="DateTime" Precision="0" />
+          <Property Name="CODIGO_NOMINA_PROMOTOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_PROMOTOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGO_NOMINA_GERENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_ESTATUS" Type="DateTime" Precision="0" />
+          <Property Name="OPERADOR_ORIGEN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OPERADOR_DESTINO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="INTERCONEXION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NUMERO_FOLIO_ABD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="APP_ITX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VALIDACION_INTERCONEXION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_RECARGA" Type="DateTime" Precision="0" />
+          <Property Name="NO_RECARGA" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -220,6 +272,32 @@
                 <ScalarProperty Name="ID_GERENTE" ColumnName="ID_GERENTE" />
                 <ScalarProperty Name="ID_SIM" ColumnName="ID_SIM" />
                 <ScalarProperty Name="ID_SIM_GERENTE" ColumnName="ID_SIM_GERENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diario">
+            <EntityTypeMapping TypeName="MKT.DataAccess.ServiceObjects.Diario">
+              <MappingFragment StoreEntitySet="Diario">
+                <ScalarProperty Name="NO_RECARGA" ColumnName="NO_RECARGA" />
+                <ScalarProperty Name="FECHA_RECARGA" ColumnName="FECHA_RECARGA" />
+                <ScalarProperty Name="VALIDACION_INTERCONEXION" ColumnName="VALIDACION_INTERCONEXION" />
+                <ScalarProperty Name="APP_ITX" ColumnName="APP_ITX" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="NUMERO_FOLIO_ABD" ColumnName="NUMERO_FOLIO_ABD" />
+                <ScalarProperty Name="INTERCONEXION" ColumnName="INTERCONEXION" />
+                <ScalarProperty Name="OPERADOR_DESTINO" ColumnName="OPERADOR_DESTINO" />
+                <ScalarProperty Name="OPERADOR_ORIGEN" ColumnName="OPERADOR_ORIGEN" />
+                <ScalarProperty Name="FECHA_ESTATUS" ColumnName="FECHA_ESTATUS" />
+                <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+                <ScalarProperty Name="CODIGO_NOMINA_GERENTE" ColumnName="CODIGO_NOMINA_GERENTE" />
+                <ScalarProperty Name="NOMBRE_PROMOTOR" ColumnName="NOMBRE_PROMOTOR" />
+                <ScalarProperty Name="CODIGO_NOMINA_PROMOTOR" ColumnName="CODIGO_NOMINA_PROMOTOR" />
+                <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+                <ScalarProperty Name="NOMBRE_CLIENTE" ColumnName="NOMBRE_CLIENTE" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="DN" ColumnName="DN" />
+                <ScalarProperty Name="ICC" ColumnName="ICC" />
+                <ScalarProperty Name="ID_DIARIO" ColumnName="ID_DIARIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
