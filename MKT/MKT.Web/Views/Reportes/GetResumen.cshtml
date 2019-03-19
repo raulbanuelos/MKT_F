@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MKT.Logica.Models.DO_Resumen>
+
+@{
+    ViewBag.Title = "GetResumen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Resumen</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoNomina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SIM_ENTREGADOS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CANTIDAD_REPORTADOS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CANTIDAD_EXISTOSAS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CANTIDAD_ACTIVOS)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoNomina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SIM_ENTREGADOS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CANTIDAD_REPORTADOS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CANTIDAD_EXISTOSAS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CANTIDAD_ACTIVOS)
+        </td>
+    </tr>
+}
+
+</table>

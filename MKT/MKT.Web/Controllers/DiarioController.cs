@@ -37,7 +37,7 @@ namespace MKT.Web.Controllers
                     using (var db = new EntitiesMKT())
                     {
                         int iRow = 2;
-                        while (!string.IsNullOrEmpty(sL.GetCellValueAsString(iRow, 1)))
+                        while (!string.IsNullOrEmpty(sL.GetCellValueAsString(iRow, 2)))
                         {
                             Diario diario = new Diario();
                             diario.ICC = sL.GetCellValueAsString(iRow, 2);

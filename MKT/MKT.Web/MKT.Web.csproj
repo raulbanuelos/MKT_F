@@ -172,6 +172,7 @@
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\SIMController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -747,6 +748,7 @@
     <Content Include="Views\SIM\AltaSIM.cshtml" />
     <Content Include="Views\SIM\EditarSIM.cshtml" />
     <Content Include="Views\Diario\Index.cshtml" />
+    <Content Include="Views\Reportes\GetResumen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

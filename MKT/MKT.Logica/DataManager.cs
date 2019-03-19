@@ -227,5 +227,63 @@ namespace MKT.Logica
             return sO_SIM_Gerente.Update(fechaEntrega, fechaSolicitud, idSIM, idGerente, idSIMGerente);
         }
         #endregion
+
+        #region Reportes
+        public static List<DO_Resumen> GetResumen()
+        {
+            List<DO_Resumen> vs = new List<DO_Resumen>();
+
+            SO_Diario sO_Diario = new SO_Diario();
+
+            DataSet informacionBD = sO_Diario.GetResumen();
+
+            if (informacionBD != null)
+            {
+                if (informacionBD.Tables.Count > 0 && informacionBD.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow item in informacionBD.Tables[0].Rows)
+                    {
+                        DO_Resumen dO_Resumen = new DO_Resumen();
+                        if (!string.IsNullOrEmpty(item["Nombre"].ToString()))
+                            dO_Resumen.Nombre = item["Nombre"].ToString();
+                        else
+                            dO_Resumen.Nombre = "NO ENCONTRADO";
+
+                        if (!string.IsNullOrEmpty(item["CODIGO_NOMINA_GERENTE"].ToString()))
+                            dO_Resumen.CodigoNomina = item["CODIGO_NOMINA_GERENTE"].ToString();
+                        else
+                            dO_Resumen.CodigoNomina = "NO ENCONTRADO";
+
+                        if (!string.IsNullOrEmpty(item["SIM_ENTREGADOS"].ToString()))
+                            dO_Resumen.SIM_ENTREGADOS = Convert.ToInt32(item["SIM_ENTREGADOS"].ToString());
+                        else
+                            dO_Resumen.SIM_ENTREGADOS = 0;
+
+                        if (!string.IsNullOrEmpty(item["CANTIDAD_REPORTADOS"].ToString()))
+                            dO_Resumen.CANTIDAD_REPORTADOS = Convert.ToInt32(item["CANTIDAD_REPORTADOS"].ToString());
+                        else
+                            dO_Resumen.CANTIDAD_REPORTADOS = 0;
+
+
+                        if (!string.IsNullOrEmpty(item["CANTIDAD_EXITOSAS"].ToString()))
+                            dO_Resumen.CANTIDAD_EXISTOSAS = Convert.ToInt32(item["CANTIDAD_EXITOSAS"].ToString());
+                        else
+                            dO_Resumen.CANTIDAD_EXISTOSAS = 0;
+
+
+                        if (!string.IsNullOrEmpty(item["CANTIDAD_ACTIVOS"].ToString()))
+                            dO_Resumen.CANTIDAD_ACTIVOS = Convert.ToInt32(item["CANTIDAD_ACTIVOS"].ToString());
+                        else
+                            dO_Resumen.CANTIDAD_ACTIVOS = 0;
+
+                        vs.Add(dO_Resumen);
+                        
+                    }
+                }
+            }
+
+            return vs;
+        }
+        #endregion
     }
 }
