@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "CargarSIM";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CargarSIM</h2>
+
+@using (Html.BeginForm("Upload", "SIM", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="file" />
+    <input type="submit" name="Submit" id="Submit" value="Upload" />
+}
