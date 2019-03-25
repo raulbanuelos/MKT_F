@@ -43,6 +43,8 @@ namespace MKT.Web.Controllers
 
                     List<DO_Gerente> ListaGerentes = DataManager.GetAllGerentes();
                     string simactual = string.Empty;
+                    bool primer = false;
+                    bool segundo = false;
                     try
                     {
                         using (var db = new EntitiesMKT())
@@ -73,6 +75,9 @@ namespace MKT.Web.Controllers
 
                                 row++;
                             }
+
+                            primer = true;
+
                             db.SaveChanges();
 
                             List<DO_SIM> ListaSIM = DataManager.GetAllSIM();
@@ -96,8 +101,11 @@ namespace MKT.Web.Controllers
                                     sIMS_GERENTE.FECHA_ENTREGA = fechaEntrega;
                                     sIMS_GERENTE.FECHA_SOLICITUD = fechaPedido;
                                     sIMS_GERENTE.ID_GERENTE = idGerente;
-                                    sIMS_GERENTE.ID_SIM = ListaSIM.Where(x => x.SIM == sim).FirstOrDefault().ID_SIM;
-                                    simactual = codigoNominaGerente;
+                                    int idSim = GetId(ListaSIM,sim);
+
+                                    sIMS_GERENTE.ID_SIM = idSim;
+
+                                    simactual = sim;
                                     db.SIMS_GERENTE.Add(sIMS_GERENTE);
 
                                     if (row % lotes == 0)
@@ -106,7 +114,7 @@ namespace MKT.Web.Controllers
                                 
                                 row++;
                             }
-
+                            segundo = true;
                             db.SaveChanges();
                         }
                     }
@@ -118,9 +126,22 @@ namespace MKT.Web.Controllers
                 }
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Upload");
         }
 
+        private int GetId(List<DO_SIM> ListaSIM, string sim)
+        {
+            int id = 0;
+            foreach (DO_SIM item in ListaSIM)
+            {
+                if (sim ==item.SIM)
+                {
+                    id = item.ID_SIM;
+                }
+            }
+
+            return id;
+        }
         public ActionResult CargarSIM()
         {
             return View();
