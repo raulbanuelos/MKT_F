@@ -42,8 +42,7 @@ namespace MKT.Web.Controllers
                     int lotes = 3000;
 
                     List<DO_Gerente> ListaGerentes = DataManager.GetAllGerentes();
-
-
+                    
                     using (var db = new EntitiesMKT())
                     {
                         //Agregamos los sims.
