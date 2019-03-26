@@ -177,13 +177,13 @@ namespace MKT.Logica
             return dO_SIM;
         }
 
-        public static List<DO_SIM> GetAllSIM()
+        public static List<DO_SIM> GetAllSIM(string fechaInicial, string fechaFinal)
         {
             SO_Sim sO_Sim = new SO_Sim();
 
             List<DO_SIM> ListaResultante = new List<DO_SIM>();
 
-            DataSet informacionBD = sO_Sim.GetAll();
+            DataSet informacionBD = sO_Sim.GetAll(fechaInicial, fechaFinal);
 
             if (informacionBD != null)
             {
@@ -229,13 +229,13 @@ namespace MKT.Logica
         #endregion
 
         #region Reportes
-        public static List<DO_Resumen> GetResumen()
+        public static List<DO_Resumen> GetResumen(string fechaInicial, string fechaFinal)
         {
             List<DO_Resumen> vs = new List<DO_Resumen>();
 
             SO_Diario sO_Diario = new SO_Diario();
 
-            DataSet informacionBD = sO_Diario.GetResumen();
+            DataSet informacionBD = sO_Diario.GetResumen(fechaInicial,fechaFinal);
 
             if (informacionBD != null)
             {

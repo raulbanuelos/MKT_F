@@ -15,9 +15,9 @@ namespace MKT.Web.Controllers
     {
         public ActionResult VerSIMS()
         {
-            return View(DataManager.GetAllSIM());
+            return View(DataManager.GetAllSIM(" "," "));
         }
-
+        
         public ActionResult AltaSIM()
         {
             ViewBag.Empleados = convert(DataManager.GetAllGerentes());
@@ -80,7 +80,7 @@ namespace MKT.Web.Controllers
 
                             db.SaveChanges();
 
-                            List<DO_SIM> ListaSIM = DataManager.GetAllSIM();
+                            List<DO_SIM> ListaSIM = DataManager.GetAllSIM("","");
                             //Agregamos la relacion SIM-GERENTE.
                             row = 2;
 

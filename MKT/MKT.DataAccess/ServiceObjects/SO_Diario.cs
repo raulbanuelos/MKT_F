@@ -11,7 +11,7 @@ namespace MKT.DataAccess.ServiceObjects
     public class SO_Diario
     {
         private string SP_MKT_GET_CRUCE = "SP_MKT_GET_CRUCE";
-        public DataSet GetResumen()
+        public DataSet GetResumen(string fechaInicial, string fechaFinal)
         {
             try
             {
@@ -19,6 +19,9 @@ namespace MKT.DataAccess.ServiceObjects
                 Desing_SQL conexion = new Desing_SQL();
 
                 Dictionary<string, object> parametros = new Dictionary<string, object>();
+
+                parametros.Add("fechaInicial", fechaInicial);
+                parametros.Add("fechaFinal", fechaFinal);
 
                 data = conexion.EjecutarStoredProcedure(SP_MKT_GET_CRUCE, parametros);
                 return data;

@@ -57,13 +57,16 @@ namespace MKT.DataAccess.ServiceObjects
             }
         }
 
-        public DataSet GetAll()
+        public DataSet GetAll(string fechaIncial, string fechaFinal)
         {
             try
             {
                 DataSet datos = new DataSet();
                 Desing_SQL conexion = new Desing_SQL();
                 Dictionary<string, object> parametros = new Dictionary<string, object>();
+
+                parametros.Add("fechaInicial", fechaIncial);
+                parametros.Add("fechaFinal", fechaFinal);
 
                 datos = conexion.EjecutarStoredProcedure(SP_GET_SIMS, parametros);
 
