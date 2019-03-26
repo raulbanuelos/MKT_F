@@ -42,67 +42,106 @@ namespace MKT.Web.Controllers
                     int lotes = 3000;
 
                     List<DO_Gerente> ListaGerentes = DataManager.GetAllGerentes();
-                    
-                    using (var db = new EntitiesMKT())
+                    string simactual = string.Empty;
+                    bool primer = false;
+                    bool segundo = false;
+                    try
                     {
-                        //Agregamos los sims.
-                        int row = 2;
-                        while (!string.IsNullOrWhiteSpace(sL.GetCellValueAsString(row,2)))
+                        using (var db = new EntitiesMKT())
                         {
-                            SIMS sim = new SIMS();
+                            //Agregamos los sims.
+                            int row = 2;
+                            string aux = string.Empty;
+                            int aux1 = 0;
+                            while (!string.IsNullOrWhiteSpace(sL.GetCellValueAsString(row, 2)))
+                            {
+                                SIMS sim = new SIMS();
 
-                            string codigoNominaOperador = sL.GetCellValueAsString(row, 3);
-                            int idOperador = ListaGerentes.Where(x => x.CodigoNomina == codigoNominaOperador).FirstOrDefault().IdGerente;
+                                string codigoNominaOperador = sL.GetCellValueAsString(row, 3);
+                                aux = codigoNominaOperador;
 
-                            sim.ID_OPERADOR = idOperador;
-                            sim.SIM = sL.GetCellValueAsString(row, 4);
+                                int idOperador = ListaGerentes.Where(x => x.CodigoNomina == codigoNominaOperador).FirstOrDefault().IdGerente;
+                                aux1 = idOperador;
 
-                            db.SIMS.Add(sim);
-                            if (row % lotes == 0)
-                                db.SaveChanges();
+                                sim.ID_OPERADOR = idOperador;
 
-                            row++;
+                                sim.SIM = sL.GetCellValueAsString(row, 4);
+
+                                simactual = sim.SIM;
+
+                                db.SIMS.Add(sim);
+                                if (row % lotes == 0)
+                                    db.SaveChanges();
+
+                                row++;
+                            }
+
+                            primer = true;
+
+                            db.SaveChanges();
+
+                            List<DO_SIM> ListaSIM = DataManager.GetAllSIM();
+                            //Agregamos la relacion SIM-GERENTE.
+                            row = 2;
+
+                            while (!string.IsNullOrWhiteSpace(sL.GetCellValueAsString(row, 2)))
+                            {
+                                SIMS_GERENTE sIMS_GERENTE = new SIMS_GERENTE();
+                                string codigoNominaOperador = sL.GetCellValueAsString(row, 3);
+                                string codigoNominaGerente = sL.GetCellValueAsString(row, 5);
+                                string sim = sL.GetCellValueAsString(row, 4);
+
+                                int idOperador = ListaGerentes.Where(x => x.CodigoNomina == codigoNominaOperador).FirstOrDefault().IdGerente;
+                                int idGerente = ListaGerentes.Where(x => x.CodigoNomina == codigoNominaGerente).FirstOrDefault().IdGerente;
+                                if (idGerente != 0)
+                                {
+                                    DateTime fechaPedido = sL.GetCellValueAsDateTime(row, 7);
+                                    DateTime fechaEntrega = sL.GetCellValueAsDateTime(row, 8);
+
+                                    sIMS_GERENTE.FECHA_ENTREGA = fechaEntrega;
+                                    sIMS_GERENTE.FECHA_SOLICITUD = fechaPedido;
+                                    sIMS_GERENTE.ID_GERENTE = idGerente;
+                                    int idSim = GetId(ListaSIM,sim);
+
+                                    sIMS_GERENTE.ID_SIM = idSim;
+
+                                    simactual = sim;
+                                    db.SIMS_GERENTE.Add(sIMS_GERENTE);
+
+                                    if (row % lotes == 0)
+                                        db.SaveChanges();
+                                }
+                                
+                                row++;
+                            }
+                            segundo = true;
+                            db.SaveChanges();
                         }
-                        db.SaveChanges();
-
-                        List<DO_SIM> ListaSIM = DataManager.GetAllSIM();
-                        //Agregamos la relacion SIM-GERENTE.
-                        row = 2;
-
-                        while (!string.IsNullOrWhiteSpace(sL.GetCellValueAsString(row, 2)))
-                        {
-                            SIMS_GERENTE sIMS_GERENTE = new SIMS_GERENTE();
-                            string codigoNominaOperador = sL.GetCellValueAsString(row, 3);
-                            string codigoNominaGerente = sL.GetCellValueAsString(row, 5);
-                            string sim = sL.GetCellValueAsString(row, 4);
-
-                            int idOperador = ListaGerentes.Where(x => x.CodigoNomina == codigoNominaOperador).FirstOrDefault().IdGerente;
-                            int idGerente = ListaGerentes.Where(x => x.CodigoNomina == codigoNominaGerente).FirstOrDefault().IdGerente;
-
-                            DateTime fechaPedido = sL.GetCellValueAsDateTime(row, 7);
-                            DateTime fechaEntrega = sL.GetCellValueAsDateTime(row, 8);
-
-                            sIMS_GERENTE.FECHA_ENTREGA = fechaEntrega;
-                            sIMS_GERENTE.FECHA_SOLICITUD = fechaPedido;
-                            sIMS_GERENTE.ID_GERENTE = idGerente;
-                            sIMS_GERENTE.ID_SIM = ListaSIM.Where(x => x.SIM == sim).FirstOrDefault().ID_SIM;
-
-                            db.SIMS_GERENTE.Add(sIMS_GERENTE);
-
-                            if (row % lotes == 0)
-                                db.SaveChanges();
-
-                            row++;
-                        }
-
-                        db.SaveChanges();
+                    }
+                    catch (Exception er)
+                    {
+                        simactual = simactual + "";
+                        throw;
                     }
                 }
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Upload");
         }
 
+        private int GetId(List<DO_SIM> ListaSIM, string sim)
+        {
+            int id = 0;
+            foreach (DO_SIM item in ListaSIM)
+            {
+                if (sim ==item.SIM)
+                {
+                    id = item.ID_SIM;
+                }
+            }
+
+            return id;
+        }
         public ActionResult CargarSIM()
         {
             return View();
